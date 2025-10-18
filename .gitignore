@@ -23,6 +23,11 @@
 # misc
 .DS_Store
 *.pem
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
 
 # debug
 npm-debug.log*
@@ -32,6 +37,7 @@ yarn-error.log*
 
 # env files (can opt-in for committing if needed)
 .env*
+!.env.example
 
 # vercel
 .vercel
@@ -39,3 +45,14 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# clerk configuration (can include secrets)
+/.clerk/
+
+# convex
+.convex/
+node_modules/.convex/
+
+# OS files
+Thumbs.db
+.DS_Store
