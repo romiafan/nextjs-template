@@ -271,6 +271,25 @@ npx convex deploy
 
 Update your production environment variables with the production Convex URL.
 
+## Quick Start Guides
+
+### Using This Template
+
+Choose your project type and follow the guide:
+
+- **🤖 AI Chatbot** → [QUICKSTART-AI-CHATBOT.md](./QUICKSTART-AI-CHATBOT.md) - Complete guide for building GPT/Gemini wrapper
+- **📚 General Usage** → [CONTRIBUTING.md](./CONTRIBUTING.md) - Forking, customization, deployment
+
+### What's Included
+
+Each guide includes:
+
+- Step-by-step setup instructions
+- Complete code examples
+- Database schema
+- UI components
+- Deployment steps
+
 ## Customization
 
 See [CONTRIBUTING.md](./CONTRIBUTING.md) for detailed guide on:
