@@ -20,6 +20,7 @@ A modern Next.js template featuring authentication via Clerk and real-time backe
 - 📱 Responsive design
 - 🔒 Type-safe API calls
 - 🚀 Turbopack for fast development
+- 🚧 Maintenance mode support
 
 ## Prerequisites
 
@@ -55,9 +56,13 @@ NEXT_PUBLIC_CLERK_SIGN_UP_URL=/sign-up
 # Convex
 NEXT_PUBLIC_CONVEX_URL=https://your-convex-url.convex.cloud
 CONVEX_DEPLOYMENT=your-deployment-name
+
+# Maintenance Mode (optional)
+NEXT_PUBLIC_MAINTENANCE_MODE=false
 ```
 
 **Get your keys:**
+
 - **Clerk**: Sign up at [clerk.com](https://clerk.com) and create an application
 - **Convex**: Sign up at [convex.dev](https://convex.dev) and create a project
 
@@ -69,6 +74,7 @@ npx convex dev
 ```
 
 This will:
+
 - Create a Convex project (if needed)
 - Generate type-safe API code
 - Start the Convex development server
@@ -178,12 +184,60 @@ export default clerkMiddleware((auth, req) => {
 ## Styling
 
 This project uses:
+
 - **Tailwind CSS 4** for utility-first styling
 - **class-variance-authority** for component variants
 - **tailwind-merge** for merging Tailwind classes
 - **lucide-react** for icons
 
 Components are in `src/components/` with utilities in `src/lib/utils.ts`.
+
+## Maintenance Mode
+
+This template includes a built-in maintenance mode feature that allows you to temporarily take your site offline for maintenance.
+
+### Enable Maintenance Mode
+
+Add this environment variable to your `.env.local`:
+
+```env
+NEXT_PUBLIC_MAINTENANCE_MODE=true
+```
+
+When enabled, all requests will be redirected to `/maintenance`, displaying a friendly maintenance page.
+
+### Disable Maintenance Mode
+
+Set the variable to `false` or remove it:
+
+```env
+NEXT_PUBLIC_MAINTENANCE_MODE=false
+```
+
+### Customization
+
+The maintenance page is located at `src/app/maintenance/page.tsx`. You can customize:
+
+- Design and styling
+- Maintenance message
+- Expected return time
+- Contact information
+
+### How It Works
+
+The middleware (`src/middleware.ts`) checks the `NEXT_PUBLIC_MAINTENANCE_MODE` environment variable before processing requests:
+
+1. If maintenance mode is enabled, users are redirected to `/maintenance`
+2. The maintenance page itself is always accessible
+3. When disabled, the `/maintenance` route redirects to home
+4. Normal authentication flow resumes when maintenance mode is off
+
+This is perfect for:
+
+- Scheduled maintenance windows
+- Emergency updates
+- Database migrations
+- System upgrades
 
 ## Deployment
 
@@ -201,6 +255,18 @@ npx convex deploy
 ```
 
 Update your production environment variables with the production Convex URL.
+
+## AI Coding Agent Instructions
+
+This template includes comprehensive AI coding agent instructions in `.github/copilot-instructions.md`. These instructions are designed to help AI assistants (GitHub Copilot, Claude, ChatGPT, etc.) understand:
+
+- Critical architecture patterns (provider nesting, middleware flow)
+- Deployment workflows for Vercel and Convex
+- Common project patterns (AI chatbots, ecommerce, landing pages)
+- Best practices for Convex queries/mutations/actions
+- Production-ready code examples
+
+**For AI agents**: Read `.github/copilot-instructions.md` first for project-specific guidance.
 
 ## Learn More
 
