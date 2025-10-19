@@ -271,6 +271,24 @@ export const generateResponse = action({
 
 **Best practice**: Use actions for AI APIs, payment processing, sending emails - anything external to Convex.
 
+### Page Structure Pattern
+
+Every new page should follow this structure:
+
+```tsx
+import { MainLayout } from "@/components/layouts/MainLayout";
+import { createMetadata } from "@/lib/metadata";
+
+export const metadata = createMetadata({
+  title: "Page Title",
+  description: "Page description for SEO",
+});
+
+export default function YourPage() {
+  return <MainLayout>{/* Your page content */}</MainLayout>;
+}
+```
+
 ### Path Aliases
 
 From `tsconfig.json`:
@@ -355,9 +373,10 @@ handler: async (ctx, args) => {
 
 - **Add database table**: Edit `convex/schema.ts` → run `npx convex dev` to regenerate types
 - **Add Convex function**: Create file in `convex/` → import via `api.filename.functionName`
-- **Add page**: Create `src/app/[route]/page.tsx` (auto-routed)
+- **Add page**: Create `src/app/[route]/page.tsx` → wrap with `MainLayout` → add metadata with `createMetadata()`
 - **Add UI component**: `pnpm dlx shadcn@latest add <component>` or create in `src/components/`
 - **Add utility**: Add to `src/lib/utils.ts` or create new file in `src/lib/`
+- **Update SEO**: Edit `src/lib/metadata.ts` for site-wide config, use `createMetadata()` per page
 - **Deploy**: `npx convex deploy --prod` → `git push` (Vercel auto-deploys)
 
 ## Common Use Cases Quick Start

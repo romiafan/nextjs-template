@@ -14,13 +14,16 @@ A modern Next.js template featuring authentication via Clerk and real-time backe
 
 ## Features
 
-- 🔐 Authentication with Clerk (email, social logins)
-- ⚡ Real-time database with Convex
-- 🎨 Tailwind CSS with custom component system
-- 📱 Responsive design
-- 🔒 Type-safe API calls
-- 🚀 Turbopack for fast development
-- 🚧 Maintenance mode support
+- 🔐 **Authentication** - Clerk integration with email/social logins
+- ⚡ **Real-time Backend** - Convex for type-safe, reactive data
+- 🎨 **Modern UI** - Tailwind CSS 4 + shadcn/ui components
+- 📱 **Responsive** - Mobile-first design with dark mode
+- 🔒 **Type-safe** - End-to-end TypeScript
+- 🚀 **Fast Development** - Turbopack for instant HMR
+- 📄 **SEO Ready** - Meta tags, sitemap, robots.txt
+- ⚠️ **Error Handling** - Custom error pages and boundaries
+- 🧩 **Component Library** - Pre-built Navbar, Footer, layouts
+- 🚧 **Maintenance Mode** - Built-in maintenance page
 
 ## Prerequisites
 
@@ -93,20 +96,30 @@ Open [http://localhost:3000](http://localhost:3000) to see your app.
 ```
 ├── convex/                 # Convex backend
 │   ├── auth.config.ts     # Authentication configuration
-│   ├── messages.ts        # Message queries/mutations
+│   ├── messages.ts        # Example queries/mutations
 │   ├── schema.ts          # Database schema
 │   └── _generated/        # Auto-generated types
 ├── src/
 │   ├── app/               # Next.js app router pages
 │   │   ├── layout.tsx     # Root layout with providers
 │   │   ├── page.tsx       # Home page
-│   │   └── pricing/       # Pricing page example
+│   │   ├── error.tsx      # Error boundary
+│   │   ├── not-found.tsx  # 404 page
+│   │   ├── loading.tsx    # Loading state
+│   │   ├── sitemap.ts     # Dynamic sitemap
+│   │   ├── pricing/       # Pricing page
+│   │   └── maintenance/   # Maintenance mode page
 │   ├── components/        # React components
+│   │   ├── Navbar.tsx     # Navigation bar
+│   │   ├── Footer.tsx     # Footer
+│   │   ├── layouts/       # Layout wrappers
 │   │   └── ConvexClientProvider.tsx
 │   ├── lib/               # Utilities
-│   │   └── utils.ts
-│   └── middleware.ts      # Clerk middleware
+│   │   ├── utils.ts       # Helper functions
+│   │   └── metadata.ts    # SEO utilities
+│   └── middleware.ts      # Auth + maintenance middleware
 ├── public/                # Static assets
+│   └── robots.txt         # SEO robots file
 └── package.json
 ```
 
@@ -117,6 +130,8 @@ pnpm dev          # Start development server with Turbopack
 pnpm build        # Build for production
 pnpm start        # Start production server
 pnpm lint         # Run ESLint
+pnpm lint:css     # Run Stylelint for CSS
+npx convex dev    # Start Convex backend (separate terminal)
 ```
 
 ## Convex Backend
@@ -255,6 +270,16 @@ npx convex deploy
 ```
 
 Update your production environment variables with the production Convex URL.
+
+## Customization
+
+See [CONTRIBUTING.md](./CONTRIBUTING.md) for detailed guide on:
+
+- Adding new pages and features
+- Customizing branding and styling
+- Creating Convex functions
+- Deployment instructions
+- Common use cases (AI chatbots, ecommerce, landing pages)
 
 ## AI Coding Agent Instructions
 
